@@ -1,20 +1,63 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
+import { Component, DestroyRef, OnInit } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { ActivatedRoute } from '@angular/router';
+import {
+  IonCol,
+  IonContent,
+  IonGrid,
+  IonHeader,
+  IonImg,
+  IonItem,
+  IonLabel,
+  IonList,
+  IonRow,
+  IonTitle,
+  IonToolbar
+} from '@ionic/angular/standalone';
+
+import { Recipe } from '../recipes.model';
+import { RecipesService } from '../recipes.service';
 
 @Component({
   selector: 'app-recipe-detail',
   templateUrl: './recipe-detail.page.html',
   styleUrls: ['./recipe-detail.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
+  imports: [
+    IonCol,
+    IonGrid,
+    IonContent,
+    IonHeader,
+    IonImg,
+    IonItem,
+    IonLabel,
+    IonList,
+    IonRow,
+    IonTitle,
+    IonToolbar
+  ]
 })
 export class RecipeDetailPage implements OnInit {
+  recipe!: Recipe | undefined;
 
-  constructor() { }
+  constructor(
+    private readonly activatedRoute: ActivatedRoute,
+    private readonly recipesService: RecipesService,
+    private readonly destroyRef: DestroyRef
+  ) {}
 
   ngOnInit() {
-  }
+    this.activatedRoute.paramMap
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((paramMap) => {
+        if (!paramMap.has('recipeId')) {
+          // redirect
+          return;
+        }
 
+        const recipeId = paramMap.get('recipeId')!;
+
+        this.recipe = this.recipesService.getRecipe(recipeId);
+      });
+  }
 }

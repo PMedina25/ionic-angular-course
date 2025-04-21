@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Recipe } from './recipes.model';
 
 @Injectable({
   providedIn: 'root',
@@ -23,11 +24,11 @@ export class RecipesService {
 
   constructor() {}
 
-  getAllRecipes() {
+  getAllRecipes(): Recipe[] {
     return [...this.recipes];
   }
 
-  getRecipe(recipeId: string) {
+  getRecipe(recipeId: string): Recipe | undefined {
     return this.recipes.find((recipe) => recipe.id === recipeId);
   }
 }
