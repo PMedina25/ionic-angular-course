@@ -13,6 +13,9 @@ import {
   IonToolbar,
 } from '@ionic/angular/standalone';
 
+import { Recipe } from './recipes.model';
+import { RecipesService } from './recipes.service';
+
 @Component({
   selector: 'app-recipes',
   templateUrl: './recipes.page.html',
@@ -33,24 +36,11 @@ import {
   ],
 })
 export class RecipesPage implements OnInit {
-  readonly recipes = [
-    {
-      id: 'r1',
-      title: 'Schnitzel',
-      imageUrl:
-        'https://upload.wikimedia.org/wikipedia/commons/7/72/Schnitzel.JPG',
-      ingredients: ['French Fries', 'Pork Meat', 'Salad'],
-    },
-    {
-      id: 'r2',
-      title: 'Spaghetti',
-      imageUrl:
-        'https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Spaghetti_Bolognese_mit_Parmesan_oder_Grana_Padano.jpg/800px-Spaghetti_Bolognese_mit_Parmesan_oder_Grana_Padano.jpg',
-      ingredients: ['Spaghetti', 'Meat', 'Tomatoes'],
-    },
-  ];
+  recipes!: Recipe[];
 
-  constructor() {}
+  constructor(private readonly recipesService: RecipesService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.recipes = this.recipesService.getAllRecipes();
+  }
 }
