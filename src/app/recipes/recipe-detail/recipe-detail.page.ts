@@ -1,13 +1,15 @@
 import { Component, DestroyRef, OnInit } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import {
   IonBackButton,
+  IonButton,
   IonButtons,
   IonCol,
   IonContent,
   IonGrid,
   IonHeader,
+  IonIcon,
   IonImg,
   IonItem,
   IonLabel,
@@ -27,11 +29,13 @@ import { RecipesService } from '../recipes.service';
   standalone: true,
   imports: [
     IonBackButton,
+    IonButton,
     IonButtons,
     IonCol,
     IonGrid,
     IonContent,
     IonHeader,
+    IonIcon,
     IonImg,
     IonItem,
     IonLabel,
@@ -47,6 +51,7 @@ export class RecipeDetailPage implements OnInit {
   constructor(
     private readonly activatedRoute: ActivatedRoute,
     private readonly recipesService: RecipesService,
+    private readonly router: Router,
     private readonly destroyRef: DestroyRef
   ) {}
 
@@ -63,5 +68,14 @@ export class RecipeDetailPage implements OnInit {
 
         this.recipe = this.recipesService.getRecipe(recipeId);
       });
+  }
+
+  onDeleteRecipe(): void {
+    if (!this.recipe) {
+      return;
+    }
+
+    this.recipesService.deleteRecipe(this.recipe.id);
+    this.router.navigate(['/recipes']);
   }
 }
