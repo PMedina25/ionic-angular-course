@@ -2,6 +2,7 @@ import { Component, DestroyRef, OnInit } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, Router } from '@angular/router';
 import {
+  AlertController,
   IonBackButton,
   IonButton,
   IonButtons,
@@ -52,6 +53,7 @@ export class RecipeDetailPage implements OnInit {
     private readonly activatedRoute: ActivatedRoute,
     private readonly recipesService: RecipesService,
     private readonly router: Router,
+    private readonly alertController: AlertController,
     private readonly destroyRef: DestroyRef
   ) {}
 
@@ -70,12 +72,28 @@ export class RecipeDetailPage implements OnInit {
       });
   }
 
-  onDeleteRecipe(): void {
-    if (!this.recipe) {
-      return;
-    }
+  async onDeleteRecipe(): Promise<void> {
+    const alert = await this.alertController.create({
+      header: 'Are you sure?',
+      message: 'Do you really want to delete the recipe?',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel'
+        },
+        {
+          text: 'Delete',
+          handler: () => {
+            if (this.recipe) {
+              this.recipesService.deleteRecipe(this.recipe.id);
+            }
 
-    this.recipesService.deleteRecipe(this.recipe.id);
-    this.router.navigate(['/recipes']);
+            this.router.navigate(['/recipes']);
+          }
+        }
+      ]
+    });
+
+    await alert.present();
   }
 }
