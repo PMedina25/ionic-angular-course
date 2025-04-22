@@ -7,12 +7,12 @@
 <ion-content [fullscreen]="true">
   <ion-list>
     @for (recipe of recipes; track recipe.id) {
-    <ion-item>
-      <ion-avatar slot="start">
-        <ion-img [src]="recipe.imageUrl" [alt]="recipe.title"></ion-img>
-      </ion-avatar>
-      <ion-label>{{ recipe.title }}</ion-label>
-    </ion-item>
+      <ion-item [routerLink]="[recipe.id]">
+        <ion-avatar slot="start">
+          <ion-img [src]="recipe.imageUrl" [alt]="recipe.title"></ion-img>
+        </ion-avatar>
+        <ion-label>{{ recipe.title }}</ion-label>
+      </ion-item>
     }
   </ion-list>
 </ion-content>

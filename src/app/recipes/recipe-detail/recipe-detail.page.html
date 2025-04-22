@@ -1,5 +1,8 @@
 <ion-header [translucent]="true">
   <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/recipes"></ion-back-button>
+    </ion-buttons>
     <ion-title>{{ recipe?.title }}</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -27,5 +30,5 @@
         </ion-list>
       </ion-col>
     </ion-row>
-  </ion-grid></ion-content
->
+  </ion-grid>
+</ion-content>

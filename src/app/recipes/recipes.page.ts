@@ -1,6 +1,5 @@
-import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 import {
   IonAvatar,
   IonContent,
@@ -10,7 +9,7 @@ import {
   IonLabel,
   IonList,
   IonTitle,
-  IonToolbar,
+  IonToolbar
 } from '@ionic/angular/standalone';
 
 import { Recipe } from './recipes.model';
@@ -31,9 +30,8 @@ import { RecipesService } from './recipes.service';
     IonList,
     IonTitle,
     IonToolbar,
-    CommonModule,
-    FormsModule,
-  ],
+    RouterLink
+  ]
 })
 export class RecipesPage implements OnInit {
   recipes!: Recipe[];

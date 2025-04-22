@@ -2,6 +2,8 @@ import { Component, DestroyRef, OnInit } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute } from '@angular/router';
 import {
+  IonBackButton,
+  IonButtons,
   IonCol,
   IonContent,
   IonGrid,
@@ -24,6 +26,8 @@ import { RecipesService } from '../recipes.service';
   styleUrls: ['./recipe-detail.page.scss'],
   standalone: true,
   imports: [
+    IonBackButton,
+    IonButtons,
     IonCol,
     IonGrid,
     IonContent,
