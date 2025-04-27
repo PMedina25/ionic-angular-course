@@ -62,7 +62,7 @@ export class RecipeDetailPage implements OnInit {
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((paramMap) => {
         if (!paramMap.has('recipeId')) {
-          // redirect
+          this.router.navigate(['/recipes']);
           return;
         }
 
