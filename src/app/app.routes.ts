@@ -3,7 +3,7 @@ import { Routes } from '@angular/router';
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'recipes',
+    redirectTo: 'places/discover',
     pathMatch: 'full'
   },
   {
@@ -28,8 +28,59 @@ export const routes: Routes = [
   },
   {
     path: 'places',
-    loadComponent: () => import('./places/places.page').then((m) => m.PlacesPage)
+    loadComponent: () => import('./places/places.page').then((m) => m.PlacesPage),
+    children: [
+      {
+        path: 'discover',
+        children: [
+          {
+            path: '',
+            loadComponent: () =>
+              import('./places/discover/discover.page').then((m) => m.DiscoverPage)
+          },
+          {
+            path: ':placeId',
+            loadComponent: () =>
+              import('./places/discover/place-detail/place-detail.page').then(
+                (m) => m.PlaceDetailPage
+              )
+          }
+        ]
+      },
+      {
+        path: 'offers',
+        children: [
+          {
+            path: '',
+            loadComponent: () =>
+              import('./places/offers/offers.page').then((m) => m.OffersPage)
+          },
+          {
+            path: 'new',
+            loadComponent: () =>
+              import('./places/offers/new-offer/new-offer.page').then(
+                (m) => m.NewOfferPage
+              )
+          },
+          {
+            path: 'edit/:placeId',
+            loadComponent: () =>
+              import('./places/offers/edit-offer/edit-offer.page').then(
+                (m) => m.EditOfferPage
+              )
+          },
+          {
+            path: ':placeId',
+            loadComponent: () =>
+              import('./places/offers/offer-bookings/offer-bookings.page').then(
+                (m) => m.OfferBookingsPage
+              )
+          }
+        ]
+      }
+    ]
   },
+
   {
     path: 'bookings',
     loadComponent: () => import('./bookings/bookings.page').then((m) => m.BookingsPage)

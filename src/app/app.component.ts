@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonApp, IonRouterOutlet } from '@ionic/angular/standalone';
 
 import { addIcons } from 'ionicons';
-import { trash } from 'ionicons/icons';
+import { card, search, trash } from 'ionicons/icons';
 
 @Component({
   selector: 'app-root',
@@ -12,6 +12,8 @@ import { trash } from 'ionicons/icons';
 export class AppComponent {
   constructor() {
     addIcons({
+      card,
+      search,
       trash
     });
   }

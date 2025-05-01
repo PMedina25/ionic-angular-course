@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import {
   IonAvatar,
@@ -33,12 +33,12 @@ import { RecipesService } from './recipes.service';
     RouterLink
   ]
 })
-export class RecipesPage implements OnInit {
+export class RecipesPage {
   recipes!: Recipe[];
 
   constructor(private readonly recipesService: RecipesService) {}
 
-  ngOnInit() {
+  ionViewWillEnter() {
     this.recipes = this.recipesService.getAllRecipes();
   }
 }
