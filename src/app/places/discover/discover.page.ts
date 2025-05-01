@@ -1,6 +1,8 @@
 import { CurrencyPipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import {
+  IonButton,
   IonCard,
   IonCardContent,
   IonCardHeader,
@@ -28,6 +30,7 @@ import { PlacesService } from '../places.service';
   styleUrls: ['./discover.page.scss'],
   standalone: true,
   imports: [
+    IonButton,
     IonItem,
     CurrencyPipe,
     IonCard,
@@ -45,7 +48,8 @@ import { PlacesService } from '../places.service';
     IonRow,
     IonThumbnail,
     IonTitle,
-    IonToolbar
+    IonToolbar,
+    RouterLink
   ]
 })
 export class DiscoverPage implements OnInit {
