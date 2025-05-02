@@ -1,20 +1,49 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
+import { RouterLink } from '@angular/router';
+import {
+  IonCol,
+  IonContent,
+  IonGrid,
+  IonHeader,
+  IonImg,
+  IonItem,
+  IonLabel,
+  IonList,
+  IonRow,
+  IonThumbnail,
+  IonTitle,
+  IonToolbar
+} from '@ionic/angular/standalone';
+import { Place } from '../places.model';
+import { PlacesService } from '../places.service';
 
 @Component({
   selector: 'app-offers',
   templateUrl: './offers.page.html',
   styleUrls: ['./offers.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
+  imports: [
+    IonCol,
+    IonContent,
+    IonGrid,
+    IonHeader,
+    IonImg,
+    IonItem,
+    IonLabel,
+    IonList,
+    IonRow,
+    IonThumbnail,
+    IonTitle,
+    IonToolbar,
+    RouterLink
+  ]
 })
 export class OffersPage implements OnInit {
+  offers!: Place[];
 
-  constructor() { }
+  constructor(private readonly placesService: PlacesService) {}
 
   ngOnInit() {
+    this.offers = this.placesService.places;
   }
-
 }
