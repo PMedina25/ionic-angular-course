@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import {
+  IonButton,
+  IonButtons,
   IonCol,
   IonContent,
   IonGrid,
   IonHeader,
+  IonIcon,
   IonImg,
   IonItem,
   IonLabel,
@@ -23,10 +26,13 @@ import { PlacesService } from '../places.service';
   styleUrls: ['./offers.page.scss'],
   standalone: true,
   imports: [
+    IonButton,
+    IonButtons,
     IonCol,
     IonContent,
     IonGrid,
     IonHeader,
+    IonIcon,
     IonImg,
     IonItem,
     IonLabel,
