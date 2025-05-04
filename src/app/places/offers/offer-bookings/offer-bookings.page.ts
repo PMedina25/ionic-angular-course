@@ -1,14 +1,18 @@
-import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { Component, DestroyRef, OnInit } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import {
   IonBackButton,
+  IonButton,
   IonButtons,
   IonContent,
   IonHeader,
   IonTitle,
-  IonToolbar
+  IonToolbar,
+  NavController
 } from '@ionic/angular/standalone';
+import { Place } from '../../places.model';
+import { PlacesService } from '../../places.service';
 
 @Component({
   selector: 'app-offer-bookings',
@@ -16,18 +20,38 @@ import {
   styleUrls: ['./offer-bookings.page.scss'],
   standalone: true,
   imports: [
+    IonButton,
     IonButtons,
     IonBackButton,
     IonContent,
     IonHeader,
     IonTitle,
     IonToolbar,
-    CommonModule,
-    FormsModule
+    RouterLink
   ]
 })
 export class OfferBookingsPage implements OnInit {
-  constructor() {}
+  place!: Place | undefined;
 
-  ngOnInit() {}
+  constructor(
+    private readonly placesService: PlacesService,
+    private readonly navController: NavController,
+    private readonly route: ActivatedRoute,
+    private readonly destroyRef: DestroyRef
+  ) {}
+
+  ngOnInit() {
+    this.route.paramMap
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((paramMap) => {
+        const placeId: string | null = paramMap.get('placeId');
+
+        if (!placeId) {
+          this.navController.navigateBack('/places/offers');
+          return;
+        }
+
+        this.place = this.placesService.getPlace(placeId);
+      });
+  }
 }

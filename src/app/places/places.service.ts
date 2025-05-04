@@ -29,9 +29,13 @@ export class PlacesService {
     )
   ];
 
-  get places() {
+  get places(): Place[] {
     return [...this._places];
   }
 
   constructor() {}
+
+  getPlace(id: string): Place | undefined {
+    return this._places.find((p) => p.id === id);
+  }
 }
