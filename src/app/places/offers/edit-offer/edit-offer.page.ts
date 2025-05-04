@@ -1,12 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, DestroyRef, OnInit } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { ActivatedRoute } from '@angular/router';
 import {
   IonBackButton,
   IonButtons,
   IonContent,
   IonHeader,
   IonTitle,
-  IonToolbar
+  IonToolbar,
+  NavController
 } from '@ionic/angular/standalone';
+import { Place } from '../../places.model';
+import { PlacesService } from '../../places.service';
 
 @Component({
   selector: 'app-edit-offer',
@@ -16,7 +21,27 @@ import {
   imports: [IonBackButton, IonButtons, IonContent, IonHeader, IonTitle, IonToolbar]
 })
 export class EditOfferPage implements OnInit {
-  constructor() {}
+  place!: Place | undefined;
 
-  ngOnInit() {}
+  constructor(
+    private readonly placesService: PlacesService,
+    private readonly navController: NavController,
+    private readonly route: ActivatedRoute,
+    private readonly destroyRef: DestroyRef
+  ) {}
+
+  ngOnInit() {
+    this.route.paramMap
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((paramMap) => {
+        const placeId: string | null = paramMap.get('placeId');
+
+        if (!placeId) {
+          this.navController.navigateBack('/places/offers');
+          return;
+        }
+
+        this.place = this.placesService.getPlace(placeId);
+      });
+  }
 }
