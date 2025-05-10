@@ -1,5 +1,33 @@
-<ion-header [translucent]="true">
+<ion-menu contentId="main">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>PairBnB</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+    <ion-list>
+      <ion-item lines="none">
+        <ion-icon name="business" slot="start"></ion-icon>
+        <ion-label>Discover Places</ion-label>
+      </ion-item>
+      <ion-item lines="none">
+        <ion-icon name="checkbox-outline" slot="start"></ion-icon>
+        <ion-label>Your Bookings</ion-label>
+      </ion-item>
+      <ion-item lines="none">
+        <ion-icon name="exit" slot="start"></ion-icon>
+        <ion-label>Logout</ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
+<ion-header id="main" [translucent]="true">
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
     <ion-title>My Offers</ion-title>
     <ion-buttons slot="primary">
       <ion-button [routerLink]="['new']">
