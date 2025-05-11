@@ -12,9 +12,7 @@ import {
   IonItem,
   IonLabel,
   IonList,
-  IonMenu,
   IonMenuButton,
-  IonMenuToggle,
   IonRow,
   IonThumbnail,
   IonTitle,
@@ -40,9 +38,7 @@ import { PlacesService } from '../places.service';
     IonItem,
     IonLabel,
     IonList,
-    IonMenu,
     IonMenuButton,
-    IonMenuToggle,
     IonRow,
     IonThumbnail,
     IonTitle,
@@ -58,6 +54,4 @@ export class OffersPage implements OnInit {
   ngOnInit() {
     this.offers = this.placesService.places;
   }
-
-  onLogout(): void {}
 }

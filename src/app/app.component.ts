@@ -1,5 +1,19 @@
 import { Component } from '@angular/core';
-import { IonApp, IonRouterOutlet } from '@ionic/angular/standalone';
+import { RouterLink } from '@angular/router';
+import {
+  IonApp,
+  IonContent,
+  IonHeader,
+  IonIcon,
+  IonItem,
+  IonLabel,
+  IonList,
+  IonMenu,
+  IonMenuToggle,
+  IonRouterOutlet,
+  IonTitle,
+  IonToolbar
+} from '@ionic/angular/standalone';
 
 import { addIcons } from 'ionicons';
 import {
@@ -15,7 +29,21 @@ import {
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
-  imports: [IonApp, IonRouterOutlet]
+  imports: [
+    IonApp,
+    IonContent,
+    IonHeader,
+    IonItem,
+    IonIcon,
+    IonLabel,
+    IonList,
+    IonMenu,
+    IonMenuToggle,
+    IonRouterOutlet,
+    IonTitle,
+    IonToolbar,
+    RouterLink
+  ]
 })
 export class AppComponent {
   constructor() {
@@ -28,5 +56,9 @@ export class AppComponent {
       search,
       trash
     });
+  }
+
+  onLogout(): void {
+    console.log('logout');
   }
 }

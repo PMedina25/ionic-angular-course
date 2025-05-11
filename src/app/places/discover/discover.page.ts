@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import {
   IonButton,
+  IonButtons,
   IonCard,
   IonCardContent,
   IonCardHeader,
@@ -16,6 +17,7 @@ import {
   IonItem,
   IonLabel,
   IonList,
+  IonMenuButton,
   IonRow,
   IonThumbnail,
   IonTitle,
@@ -31,6 +33,7 @@ import { PlacesService } from '../places.service';
   standalone: true,
   imports: [
     IonButton,
+    IonButtons,
     IonItem,
     CurrencyPipe,
     IonCard,
@@ -45,6 +48,7 @@ import { PlacesService } from '../places.service';
     IonImg,
     IonLabel,
     IonList,
+    IonMenuButton,
     IonRow,
     IonThumbnail,
     IonTitle,
