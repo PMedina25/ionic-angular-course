@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import {
   IonApp,
   IonContent,
@@ -25,6 +25,7 @@ import {
   search,
   trash
 } from 'ionicons/icons';
+import { AuthService } from './auth/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -46,7 +47,10 @@ import {
   ]
 })
 export class AppComponent {
-  constructor() {
+  constructor(
+    private readonly authService: AuthService,
+    private readonly router: Router
+  ) {
     addIcons({
       add,
       business,
@@ -59,6 +63,7 @@ export class AppComponent {
   }
 
   onLogout(): void {
-    console.log('logout');
+    this.authService.logout();
+    this.router.navigateByUrl('/auth');
   }
 }

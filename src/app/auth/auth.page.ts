@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import {
   IonButton,
   IonContent,
@@ -16,11 +17,15 @@ import { AuthService } from './auth.service';
   imports: [IonButton, IonContent, IonHeader, IonTitle, IonToolbar]
 })
 export class AuthPage implements OnInit {
-  constructor(private readonly authService: AuthService) {}
+  constructor(
+    private readonly authService: AuthService,
+    private readonly router: Router
+  ) {}
 
   ngOnInit() {}
 
   onLogin() {
     this.authService.login();
+    this.router.navigateByUrl('/places/discover');
   }
 }
