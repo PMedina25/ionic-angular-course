@@ -1,7 +1,5 @@
-import { CommonModule } from '@angular/common';
-import { Component, DestroyRef, OnInit } from '@angular/core';
+import { Component, DestroyRef, OnInit, ViewChild } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { FormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import {
   IonBackButton,
@@ -9,10 +7,14 @@ import {
   IonButtons,
   IonContent,
   IonHeader,
+  IonModal,
   IonTitle,
   IonToolbar,
   NavController
 } from '@ionic/angular/standalone';
+import { OverlayEventDetail } from '@ionic/core/components';
+
+import { CreateBookingComponent } from '../../../bookings/create-booking/create-booking.component';
 import { Place } from '../../places.model';
 import { PlacesService } from '../../places.service';
 
@@ -27,13 +29,15 @@ import { PlacesService } from '../../places.service';
     IonButtons,
     IonContent,
     IonHeader,
+    IonModal,
     IonTitle,
     IonToolbar,
-    CommonModule,
-    FormsModule
+    CreateBookingComponent
   ]
 })
 export class PlaceDetailPage implements OnInit {
+  @ViewChild(IonModal) modal!: IonModal;
+
   place!: Place | undefined;
 
   constructor(
@@ -58,7 +62,17 @@ export class PlaceDetailPage implements OnInit {
       });
   }
 
-  onBookPlace() {
-    this.navController.navigateBack('/places/discover');
+  cancel() {
+    this.modal.dismiss(null, 'cancel');
+  }
+
+  confirm() {
+    this.modal.dismiss(this.place, 'confirm');
+  }
+
+  onWillDismiss(event: CustomEvent<OverlayEventDetail>) {
+    if (event.detail.role === 'confirm') {
+      console.log('Booked!', event.detail.data);
+    }
   }
 }
