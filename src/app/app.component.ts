@@ -21,6 +21,7 @@ import {
   business,
   card,
   checkboxOutline,
+  create,
   exit,
   search,
   trash
@@ -56,6 +57,7 @@ export class AppComponent {
       business,
       card,
       checkboxOutline,
+      create,
       exit,
       search,
       trash

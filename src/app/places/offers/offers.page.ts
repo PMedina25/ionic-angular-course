@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import {
   IonButton,
   IonButtons,
@@ -10,6 +10,9 @@ import {
   IonIcon,
   IonImg,
   IonItem,
+  IonItemOption,
+  IonItemOptions,
+  IonItemSliding,
   IonLabel,
   IonList,
   IonMenuButton,
@@ -27,6 +30,9 @@ import { PlacesService } from '../places.service';
   styleUrls: ['./offers.page.scss'],
   standalone: true,
   imports: [
+    IonItemOption,
+    IonItemOptions,
+    IonItemSliding,
     IonButton,
     IonButtons,
     IonCol,
@@ -49,9 +55,17 @@ import { PlacesService } from '../places.service';
 export class OffersPage implements OnInit {
   offers!: Place[];
 
-  constructor(private readonly placesService: PlacesService) {}
+  constructor(
+    private readonly placesService: PlacesService,
+    private readonly router: Router
+  ) {}
 
   ngOnInit() {
     this.offers = this.placesService.places;
+  }
+
+  onEdit(offerId: string, slidingItem: IonItemSliding) {
+    slidingItem.close();
+    this.router.navigate(['/', 'places', 'offers', 'edit', offerId]);
   }
 }
