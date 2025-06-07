@@ -5,30 +5,41 @@
 </ion-header>
 
 <ion-content class="ion-padding" [fullscreen]="true">
-  <ion-grid class="ion-no-padding">
-    <ion-row>
-      <ion-col size-sm="6" offset-sm="3">
-        <ion-list>
-          <ion-item>
-            <ion-input type="email" label="Email" labelPlacement="floating"></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-input
-              type="password"
-              label="Password"
-              labelPlacement="floating"></ion-input>
-          </ion-item>
-        </ion-list>
-      </ion-col>
-    </ion-row>
+  <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+    <ion-grid class="ion-no-padding">
+      <ion-row>
+        <ion-col size-sm="6" offset-sm="3">
+          <ion-input
+            type="email"
+            label="Email"
+            name="email"
+            labelPlacement="floating"
+            errorText="Invalid email"
+            required
+            email
+            ngModel></ion-input>
+          <ion-input
+            type="password"
+            label="Password"
+            name="password"
+            labelPlacement="floating"
+            errorText="Invalid password"
+            required
+            minlength="6"
+            ngModel></ion-input>
+        </ion-col>
+      </ion-row>
 
-    <ion-row>
-      <ion-col size-sm="6" offset-sm="3">
-        <ion-button color="primary" fill="clear" expand="block"
-          >Switch to Login</ion-button
-        >
-        <ion-button color="primary" expand="block" (click)="onLogin()">Login</ion-button>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+      <ion-row>
+        <ion-col size-sm="6" offset-sm="3">
+          <ion-button type="button" color="primary" fill="clear" expand="block"
+            >Switch to Login</ion-button
+          >
+          <ion-button type="submit" color="primary" expand="block" (click)="onLogin()"
+            >Login</ion-button
+          >
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
 </ion-content>

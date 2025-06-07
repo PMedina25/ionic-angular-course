@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormsModule, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import {
   IonButton,
@@ -7,8 +8,6 @@ import {
   IonGrid,
   IonHeader,
   IonInput,
-  IonItem,
-  IonList,
   IonRow,
   IonTitle,
   IonToolbar
@@ -21,17 +20,16 @@ import { AuthService } from './auth.service';
   styleUrls: ['./auth.page.scss'],
   standalone: true,
   imports: [
-    IonList,
     IonRow,
     IonCol,
     IonGrid,
-    IonItem,
     IonInput,
     IonButton,
     IonContent,
     IonHeader,
     IonTitle,
-    IonToolbar
+    IonToolbar,
+    FormsModule
   ]
 })
 export class AuthPage implements OnInit {
@@ -41,6 +39,10 @@ export class AuthPage implements OnInit {
   ) {}
 
   ngOnInit() {}
+
+  onSubmit(form: NgForm) {
+    console.log(form);
+  }
 
   onLogin() {
     this.authService.login();
