@@ -19,6 +19,8 @@ import {
   IonList,
   IonMenuButton,
   IonRow,
+  IonSegment,
+  IonSegmentButton,
   IonThumbnail,
   IonTitle,
   IonToolbar
@@ -32,6 +34,8 @@ import { PlacesService } from '../places.service';
   styleUrls: ['./discover.page.scss'],
   standalone: true,
   imports: [
+    IonSegmentButton,
+    IonSegment,
     IonButton,
     IonButtons,
     IonItem,
@@ -63,5 +67,9 @@ export class DiscoverPage implements OnInit {
 
   ngOnInit() {
     this.places = this.placesService.places;
+  }
+
+  onFilterUpdate(event: CustomEvent): void {
+    console.log(event.detail.value);
   }
 }
