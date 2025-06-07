@@ -23,7 +23,7 @@
             label="Password"
             name="password"
             labelPlacement="floating"
-            errorText="Invalid password"
+            errorText="Should be at least 6 characters long"
             required
             minlength="6"
             ngModel></ion-input>
@@ -35,9 +35,7 @@
           <ion-button type="button" color="primary" fill="clear" expand="block"
             >Switch to Login</ion-button
           >
-          <ion-button type="submit" color="primary" expand="block" (click)="onLogin()"
-            >Login</ion-button
-          >
+          <ion-button type="submit" color="primary" expand="block">Login</ion-button>
         </ion-col>
       </ion-row>
     </ion-grid>

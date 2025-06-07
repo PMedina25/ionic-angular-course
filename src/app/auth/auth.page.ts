@@ -41,10 +41,11 @@ export class AuthPage implements OnInit {
   ngOnInit() {}
 
   onSubmit(form: NgForm) {
-    console.log(form);
-  }
+    if (!form.valid) {
+      form.control.markAllAsTouched();
+      return;
+    }
 
-  onLogin() {
     this.authService.login();
     this.router.navigateByUrl('/places/discover');
   }
