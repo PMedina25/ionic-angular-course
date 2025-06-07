@@ -2,10 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {
   IonButton,
+  IonCol,
   IonContent,
+  IonGrid,
   IonHeader,
   IonInput,
   IonItem,
+  IonList,
+  IonRow,
   IonTitle,
   IonToolbar
 } from '@ionic/angular/standalone';
@@ -16,7 +20,19 @@ import { AuthService } from './auth.service';
   templateUrl: './auth.page.html',
   styleUrls: ['./auth.page.scss'],
   standalone: true,
-  imports: [IonItem, IonInput, IonButton, IonContent, IonHeader, IonTitle, IonToolbar]
+  imports: [
+    IonList,
+    IonRow,
+    IonCol,
+    IonGrid,
+    IonItem,
+    IonInput,
+    IonButton,
+    IonContent,
+    IonHeader,
+    IonTitle,
+    IonToolbar
+  ]
 })
 export class AuthPage implements OnInit {
   constructor(
