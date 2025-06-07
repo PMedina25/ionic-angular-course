@@ -19,6 +19,7 @@ import { addIcons } from 'ionicons';
 import {
   add,
   business,
+  calendar,
   card,
   checkboxOutline,
   create,
@@ -55,6 +56,7 @@ export class AppComponent {
     addIcons({
       add,
       business,
+      calendar,
       card,
       checkboxOutline,
       create,

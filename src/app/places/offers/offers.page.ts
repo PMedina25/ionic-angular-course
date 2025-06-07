@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import {
   IonButton,
@@ -8,27 +8,25 @@ import {
   IonGrid,
   IonHeader,
   IonIcon,
-  IonImg,
-  IonItem,
   IonItemOption,
   IonItemOptions,
   IonItemSliding,
-  IonLabel,
   IonList,
   IonMenuButton,
   IonRow,
-  IonThumbnail,
   IonTitle,
   IonToolbar
 } from '@ionic/angular/standalone';
 import { Place } from '../places.model';
 import { PlacesService } from '../places.service';
+import { OfferItemComponent } from './offer-item/offer-item.component';
 
 @Component({
   selector: 'app-offers',
   templateUrl: './offers.page.html',
   styleUrls: ['./offers.page.scss'],
   standalone: true,
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   imports: [
     IonItemOption,
     IonItemOptions,
@@ -40,16 +38,13 @@ import { PlacesService } from '../places.service';
     IonGrid,
     IonHeader,
     IonIcon,
-    IonImg,
-    IonItem,
-    IonLabel,
     IonList,
     IonMenuButton,
     IonRow,
-    IonThumbnail,
     IonTitle,
     IonToolbar,
-    RouterLink
+    RouterLink,
+    OfferItemComponent
   ]
 })
 export class OffersPage implements OnInit {
