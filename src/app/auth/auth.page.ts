@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import {
@@ -33,6 +33,8 @@ import { AuthService } from './auth.service';
   ]
 })
 export class AuthPage implements OnInit {
+  isLogin = signal<boolean>(true);
+
   constructor(
     private readonly authService: AuthService,
     private readonly router: Router
@@ -48,5 +50,9 @@ export class AuthPage implements OnInit {
 
     this.authService.login();
     this.router.navigateByUrl('/places/discover');
+  }
+
+  onSwitchAuthMode() {
+    this.isLogin.update((prevIsLogin) => !prevIsLogin);
   }
 }
